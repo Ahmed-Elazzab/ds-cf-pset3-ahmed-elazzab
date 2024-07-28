@@ -2,7 +2,7 @@
 
 The parameters (attributes) are initialized by the child model class.
 """
-
+import numpy as np
 import logging
 from abc import ABC, abstractmethod
 
@@ -47,10 +47,25 @@ class PredictorABC(ABC):
 
         score:float
         """
-        # 1. Implement a method the return the MAPE, R2 and Durbin-Watson of the model. It should be dictionary
-        # score = {
-        #     "MAPE": mape,
-        #     "R2": r2,
-        #     "Durbin-Watson": dw,
-        # }
-        # return score
+
+        # 1. Implement a method that returns the MAPE, R2, and Durbin-Watson of the model. It should be a dictionary.
+        # Calculate the predictions using the model's predict method
+        y_pred = self.predict(X_test)
+
+        # Calculate MAPE (Mean Absolute Percentage Error)
+        mape = np.mean(np.abs((y_test - y_pred) / y_test)) * 100
+
+        # Calculate R2 score
+        r2 = self.calculate_r2(y_test, y_pred)
+
+        # Calculate Durbin-Watson score
+        dw = self.calculate_dw(y_test, y_pred)
+
+        # Create a dictionary to store the scores
+        scores = {
+            "MAPE": mape,
+            "R2": r2,
+            "Durbin-Watson": dw
+        }
+
+        return scores

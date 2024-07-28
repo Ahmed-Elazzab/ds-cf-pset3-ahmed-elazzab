@@ -29,7 +29,14 @@ class Utils:
         # 1. Implement the logic to load the configuration from the YAML file.
         # 2. Return the configuration nested dictionary
         # 3. If the config file is not found, raise an Exception with an appropriate message.
-        pass
+        try:
+            with open(config_file, "r") as file:
+                config = yaml.safe_load(file)
+            logger.info("Configuration loaded successfully.")
+            return config
+        except FileNotFoundError:
+            logger.error("Config file not found.")
+            raise Exception("Config file not found.")
 
     @staticmethod
     def write_to_csv(dataframe, path):
@@ -69,6 +76,13 @@ class Utils:
         """
         # Use model_type, model_dir from config and current timestamp to create model path.
         # It should be like output/model_registry/svm.pk
+        try:
+            model_dir = config["model_dir"]
+            model_type = config["model_type"]
+            return f"output/{model_dir}/{model_type}_{time_stamp}.pk"
+        except KeyError as e:
+            logger.error(f"Required keys not found in the config dictionary: {str(e)}")
+            raise KeyError("Required keys not found in the config dictionary.")
 
     @staticmethod
     def save_pkl(predictor_ins, path):

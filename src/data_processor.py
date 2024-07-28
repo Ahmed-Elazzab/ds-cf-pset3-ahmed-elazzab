@@ -57,7 +57,9 @@ class DataProcessor:
              to generate output in "human-readable" format.
           2. return updated dataframe
         """
-        pass
+        # implementation for the logic inverse the standard scaling
+        data[self.y_col] = self.y_scaler.inverse_transform(data[self.y_col].values.reshape(-1, 1))
+        return data
 
     def remove_nulls(self, data):
         """
@@ -69,8 +71,10 @@ class DataProcessor:
         Raises:
             KeyError: If the specified columns are not found in the DataFrame.
         """
-        # write logic to remove null from all columns and return updated dataframe
-        pass
+        # the logic to remove null values
+        null_less_data = data.dropna()
+
+        return null_less_data
 
     def remove_duplicates(self, data):
         """
@@ -83,7 +87,8 @@ class DataProcessor:
             KeyError: If the specified columns are not found in the DataFrame.
         """
         # write logic to remove duplicate rows from all columns and return updated dataframe
-        pass
+        no_duplicates = data.drop_duplicates()
+        return no_duplicates
 
     def standard_scale(self, data):
         """
@@ -96,6 +101,24 @@ class DataProcessor:
         # 2. Keep in mind that you have to apply the same scale on prediction data
         # 3. return updated data
 
+        # Initialize the scaler if not already initialized
+        if self.X_scaler is None:
+            self.X_scaler = StandardScaler()
+            self.X_scaler.fit(data[self.num_cols])
+
+        # Apply standard scaling to the numerical columns
+        data[self.num_cols] = self.X_scaler.transform(data[self.num_cols])
+
+        # Initialize the scaler for the target column if not already initialized
+        if self.y_scaler is None:
+            self.y_scaler = StandardScaler()
+            self.y_scaler.fit(data[[self.y_col]])
+
+        # Apply standard scaling to the target column
+        data[[self.y_col]] = self.y_scaler.transform(data[[self.y_col]])
+
+        return data
+
         #  IMPORTANT NOTE
         """Standard Scaling technique is used in data preprocessing to transform features by
         subtracting the mean and dividing by the standard deviation. This process standardizes
@@ -106,4 +129,3 @@ class DataProcessor:
         make mistakes. Therefore when a model is being trained, a new scaler must be fit and 
         used to transform the data, but for predcition, the same scaler is used to only transform 
         the data."""
-        pass
