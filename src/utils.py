@@ -3,7 +3,6 @@ import pickle
 
 import yaml
 
-
 logger = logging.getLogger(__name__)
 
 

@@ -2,10 +2,11 @@ import logging
 from datetime import datetime
 
 import pandas as pd
+from sklearn.model_selection import train_test_split
+
 from data_processor import DataProcessor
 from predictors.lr_predictor import LinearModel
 from predictors.svm_predictor import SVMModel
-from sklearn.model_selection import train_test_split
 from utils import Utils
 
 """Add necessary imports."""

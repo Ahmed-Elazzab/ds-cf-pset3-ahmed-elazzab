@@ -1,7 +1,8 @@
 """A class for SVM model that uses MLPredictor abstract class."""
 
-from predictors.abstract_predictor import PredictorABC
 from sklearn.svm import SVR
+
+from predictors.abstract_predictor import PredictorABC
 
 
 class SVMModel(PredictorABC):

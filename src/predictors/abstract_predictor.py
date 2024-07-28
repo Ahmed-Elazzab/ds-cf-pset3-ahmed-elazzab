@@ -9,7 +9,6 @@ from abc import ABC, abstractmethod
 from sklearn import metrics
 from statsmodels.stats.stattools import durbin_watson
 
-
 logger = logging.getLogger(__name__)
 
 
