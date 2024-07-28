@@ -1,0 +1,52 @@
+site_name: pset3_ahmed_elazzab
+
+repo_name: pg-ds-dev-class/ds-cf-pset3-ahmed-elazzab
+repo_url: https://github.com/pg-ds-dev-class/ds-cf-pset3-ahmed-elazzab
+edit_uri: ""
+
+use_directory_urls: false
+
+theme:
+  name: material
+  icon:
+    repo: fontawesome/brands/github
+  logo: assets/pg.svg
+  palette:
+    scheme: custom
+    primary: light blue
+    accent: blue
+
+nav:
+    - 'Introduction': 'index.md'
+    - 'Modules':
+      - 'pset3_ahmed_elazzab.helloworld': 'modules/pset3_ahmed_elazzab.helloworld.md'
+      - 'pset3_ahmed_elazzab.exe':
+        - 'Getting started': 'modules/pset3_ahmed_elazzab.exe/getting_started.md'
+        - 'Source code': 'modules/pset3_ahmed_elazzab.exe/source_code.md'
+
+markdown_extensions:
+- admonition
+- pymdownx.emoji
+- pymdownx.highlight
+- pymdownx.superfences
+- pymdownx.magiclink
+- pymdownx.tasklist
+- toc:
+    permalink: "¤"
+
+plugins:
+- search
+- mkdocstrings:
+    handlers:
+      python:
+        paths: [../src]
+        setup_commands:
+        - import sys
+        - from unittest.mock import MagicMock as mock
+        selection:
+          filters:
+          - "!^_"       # It excludes all private directories, modules, methods, and so on
+          - "!^tests$"  # It excludes all /tests directories
+          - "^__.*__$"  # It forces to generate documentation for all magic methods
+          - "!^mockups$" # Excludes classes inherited from two base classes, due to docs generation error
+- autorefs
