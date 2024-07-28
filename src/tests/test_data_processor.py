@@ -1,4 +1,5 @@
 """Module with tests for the data processor."""
+
 import unittest
 
 import numpy as np

@@ -8,34 +8,40 @@ from utils import Utils
 
 class TestUtils(unittest.TestCase):
     """Test Cases for utils.py ."""
-    expected_result = {"training_data": "input_data/kc_house_data.csv",
-                       "input_data": "input_data/kc_house_data.csv",
-                       "model_dir": "output/model_registry",
-                       "predicted_result_path": "output/predictions/predictions.csv",
-                       "train_model": True,
-                       "trained_model_file": "model_linear_2023-06-01_173421.pkl",
-                       "test_size": 0.4,
-                       "model_type": "linear",
-                       "data_params": {
-                           "features": ["bedrooms",
-                                        "bathrooms",
-                                        "sqft_living",
-                                        "sqft_lot",
-                                        "floors",
-                                        "waterfront",
-                                        "view",
-                                        "condition",
-                                        "grade",
-                                        "sqft_above",
-                                        "sqft_basement",
-                                        "yr_built",
-                                        "yr_renovated",
-                                        "zipcode",
-                                        "lat",
-                                        "long",
-                                        "sqft_living15",
-                                        "sqft_lot15"],
-                           "target": ["price"]}}
+
+    expected_result = {
+        "training_data": "input_data/kc_house_data.csv",
+        "input_data": "input_data/kc_house_data.csv",
+        "model_dir": "output/model_registry",
+        "predicted_result_path": "output/predictions/predictions.csv",
+        "train_model": True,
+        "trained_model_file": "model_linear_2023-06-01_173421.pkl",
+        "test_size": 0.4,
+        "model_type": "linear",
+        "data_params": {
+            "features": [
+                "bedrooms",
+                "bathrooms",
+                "sqft_living",
+                "sqft_lot",
+                "floors",
+                "waterfront",
+                "view",
+                "condition",
+                "grade",
+                "sqft_above",
+                "sqft_basement",
+                "yr_built",
+                "yr_renovated",
+                "zipcode",
+                "lat",
+                "long",
+                "sqft_living15",
+                "sqft_lot15",
+            ],
+            "target": ["price"],
+        },
+    }
 
     def test_load_configuration_success(self):
         """
@@ -52,41 +58,34 @@ class TestUtils(unittest.TestCase):
             AssertionError: If any of the assertions fail.
         """
         # Define the configuration file path
-         
 
         # Create a Configuration object
-       
 
         # Get the configuration settings
-        
 
         # Assert that the returned result is a dictionary
-         
 
         # Assert that the length of the result matches the expected length
-         
 
         # Assert that the result matches the expected result
-         
 
     def test_write_to_csv(self):
         """Save the predictions to a csv file."""
         # make a temporary folder
-         
+
         # create a dummy dataframe
-         
+
         # write the dataframe to a csv file
-   
+
         # read the csv file
-         
+
         # assert that the csv file is not empty
-         
+
         # assert that the csv file has the correct number of rows and columns
-         
+
         # assert that the csv file has the correct content
-         
+
         # remove the temporary folder
-         
 
     def test_generate_model_path(self):
         """Generate a model path."""

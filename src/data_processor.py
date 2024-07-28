@@ -31,14 +31,10 @@ class DataProcessor:
             data (DataFrame): The DataFrame to process.
         """
         # 1. Filter out the numerical columns from the dataframe.
-        self.num_cols = data.select_dtypes(
-            include=numpy.number
-        ).columns.tolist()
+        self.num_cols = data.select_dtypes(include=numpy.number).columns.tolist()
         # 2. Filter out the categorical columns from the dataframe.
-        self.cat_cols = data.select_dtypes(
-            exclude=numpy.number
-        ).columns.tolist()
-         # 3. Call remove null function on your data
+        self.cat_cols = data.select_dtypes(exclude=numpy.number).columns.tolist()
+        # 3. Call remove null function on your data
         data = self.remove_nulls(data)
         # 4. Call remove duplicate function on your data
         data = self.remove_duplicates(data)
@@ -55,7 +51,7 @@ class DataProcessor:
 
         Args:
         data (DataFrame): The DataFrame to process.
-        
+
         Steps:
           1. Implement the logic to inverse the standard scaling
              to generate output in "human-readable" format.

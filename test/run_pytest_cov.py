@@ -70,9 +70,13 @@ def _main():
         filt.extend(["-k", args.filter, "-s"])
         xdist = ["-p", "no:xdist"]
 
-    cmd = ["pytest", "-s", "--log-cli-level=INFO", "--cov=src", "-vvv"] + filt + xdist + markers + \
-          ["--force-sugar", "-p", "no:cacheprovider", "--html=pytest_report/index.html",
-           "--durations=10", "./src"]
+    cmd = (
+        ["pytest", "-s", "--log-cli-level=INFO", "--cov=src", "-vvv"]
+        + filt
+        + xdist
+        + markers
+        + ["--force-sugar", "-p", "no:cacheprovider", "--html=pytest_report/index.html", "--durations=10", "./src"]
+    )
     try:
         print(f"Running: {' '.join(cmd)}")  # noqa
         run(cmd, check=True)

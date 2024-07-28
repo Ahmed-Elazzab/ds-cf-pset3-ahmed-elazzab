@@ -1,4 +1,5 @@
 """Module with tests for the SVM Model."""
+
 import os
 import sys
 import unittest
@@ -12,9 +13,7 @@ from sklearn.svm import SVR
 from statsmodels.stats.stattools import durbin_watson
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-sys.path.append(
-    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-)
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 from src.predictors.svm_predictor import SVMModel  # noqa:
 
 
@@ -27,9 +26,7 @@ class SVMModelTestCase(unittest.TestCase):
         X, y = make_regression(n_samples=500, n_features=5, random_state=42)
         X = pd.DataFrame(X)
         y = pd.DataFrame(y)
-        self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(
-            X, y, random_state=42
-        )
+        self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(X, y, random_state=42)
         # Create an instance of the SVMModel class
         self.predictor = SVMModel()
 
@@ -44,11 +41,10 @@ class SVMModelTestCase(unittest.TestCase):
         # Assert that the model is not None
 
         # Assert that the model is an instance of the sklearn SVR class
-         
+
         # Assert that the model is fitted
-         
+
         # Assert that the model is not empty
-         
 
     def test_predict(self):
         """
@@ -64,15 +60,14 @@ class SVMModelTestCase(unittest.TestCase):
         self.predictor.fit(self.X_train, self.y_train)
 
         # Call the `predict` method to obtain the predicted values
-         
+
         # Assert that the shape of the predicted values
-         
+
         # Assert that y_pred and y_test are similar using np.allclose
-         
+
         # assert that the y_pred is not None
-         
+
         # assert that the y_pred doens't contain any null values
-         
 
     def test_score(self):
         """

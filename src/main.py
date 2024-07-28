@@ -13,9 +13,7 @@ from utils import Utils
 """Create a dictionary that maps the string keys to corresponding model
 classes. i.e LinearModel and SVM. these string should be respective of
 what model we have defined in the config.yml file."""
-PREDICTORS_LOOKUP = {
-    ...
-}
+PREDICTORS_LOOKUP = {...}
 
 """ Implement the configuration for logging in the project here. it should add a log file
 in the output/logs/abc.log
@@ -23,8 +21,7 @@ Log file should contain logs of complete journey of training and predicting mode
 The name of the log file should be like this. log-2023-06-06_200011.log"""
 TIME_STAMP = ...
 log_filename = ...
-logging.basicConfig(...
-)
+logging.basicConfig(...)
 
 logging.info("Running Urban Planning")
 
@@ -48,11 +45,11 @@ def orchestrate():
     # Add check if train model bool is true in config. Then write steps to train model.
 
     # if config["train_model"]:
-        # Train a new model using train method
-        # train(utils, config, dataframe, model_type)
+    # Train a new model using train method
+    # train(utils, config, dataframe, model_type)
     # else:
-        # Load a trained model using load_predict method
-        # load_predict(utils, config, dataframe)
+    # Load a trained model using load_predict method
+    # load_predict(utils, config, dataframe)
 
 
 def train(utils, config, dataframe, model_type):
@@ -62,7 +59,7 @@ def train(utils, config, dataframe, model_type):
 
     # Initialize the data processor and run it on the data
 
-    # Create a new list 'traning_cols' which should contain  features 
+    # Create a new list 'traning_cols' which should contain  features
     # and target columns from the config.
 
     # create the dataframe with training columns only
@@ -87,7 +84,6 @@ def train(utils, config, dataframe, model_type):
     # Save the model to the model path using util's save_pkl method
     # model = {"processor": processor, "predictor": predictor}
     # utils.save_pkl(model, model_path)
-
 
 
 def load_predict(utils, config, dataframe):

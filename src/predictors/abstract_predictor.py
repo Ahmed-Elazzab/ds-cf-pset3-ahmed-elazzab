@@ -2,6 +2,7 @@
 
 The parameters (attributes) are initialized by the child model class.
 """
+
 import logging
 from abc import ABC, abstractmethod
 

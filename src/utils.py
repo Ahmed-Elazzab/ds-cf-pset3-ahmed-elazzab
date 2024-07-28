@@ -25,7 +25,7 @@ class Utils:
             Exception: If the config file is not found.
         """
         """Instruction """
-        
+
         logger.info("Load config.yaml and loading setup")
         # 1. Implement the logic to load the configuration from the YAML file.
         # 2. Return the configuration nested dictionary
@@ -70,7 +70,7 @@ class Utils:
         """
         # Use model_type, model_dir from config and current timestamp to create model path.
         # It should be like output/model_registry/svm.pk
-    
+
     @staticmethod
     def save_pkl(predictor_ins, path):
         """Save the model to the specified path as a pickle file.
