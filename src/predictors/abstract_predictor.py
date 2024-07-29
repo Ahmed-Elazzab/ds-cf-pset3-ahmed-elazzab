@@ -6,7 +6,7 @@ import numpy as np
 import logging
 from abc import ABC, abstractmethod
 
-from sklearn import metrics
+from sklearn.metrics import r2_score
 from statsmodels.stats.stattools import durbin_watson
 
 logger = logging.getLogger(__name__)
@@ -56,10 +56,10 @@ class PredictorABC(ABC):
         mape = np.mean(np.abs((y_test - y_pred) / y_test)) * 100
 
         # Calculate R2 score
-        r2 = self.calculate_r2(y_test, y_pred)
+        r2 = r2_score(y_test, y_pred)
 
         # Calculate Durbin-Watson score
-        dw = self.calculate_dw(y_test, y_pred)
+        dw = durbin_watson(y_test - y_pred)
 
         # Create a dictionary to store the scores
         scores = {
