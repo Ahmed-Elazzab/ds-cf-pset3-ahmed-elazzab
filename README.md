@@ -11,8 +11,6 @@ Generated using [this build](https://github.com/procter-gamble/de-cf-python-pod/
 [![confluence](https://img.shields.io/badge/Confluence-none-172B4D?logo=Confluence)](https://jira-pg-ds.atlassian.net/wiki/spaces/none)
 [![python-pod](https://img.shields.io/badge/created%20with-python--pod-AF1685)](https://github.com/procter-gamble/de-cf-python-pod)
 
-
-
 ## Quickstart
 
 ### For Developers
