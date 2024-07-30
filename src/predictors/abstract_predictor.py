@@ -2,6 +2,7 @@
 
 The parameters (attributes) are initialized by the child model class.
 """
+
 import numpy as np
 import logging
 from abc import ABC, abstractmethod
@@ -62,10 +63,6 @@ class PredictorABC(ABC):
         dw = durbin_watson(y_test - y_pred)
 
         # Create a dictionary to store the scores
-        scores = {
-            "MAPE": mape,
-            "R2": r2,
-            "Durbin-Watson": dw
-        }
+        scores = {"MAPE": mape, "R2": r2, "Durbin-Watson": dw}
 
         return scores

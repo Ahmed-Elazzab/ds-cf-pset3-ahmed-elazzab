@@ -113,7 +113,7 @@ class DataProcessor:
         if self.y_scaler is None:
             self.y_scaler = StandardScaler()
             self.y_scaler.fit(data[self.y_col])
-            
+
         # Apply standard scaling to the target column
         data[self.y_col] = self.y_scaler.transform(data[self.y_col])
 

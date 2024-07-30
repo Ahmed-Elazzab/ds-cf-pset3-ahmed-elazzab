@@ -14,7 +14,7 @@ from statsmodels.stats.stattools import durbin_watson
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-from src.predictors.svm_predictor import SVMModel  
+from src.predictors.svm_predictor import SVMModel
 
 
 class SVMModelTestCase(unittest.TestCase):
@@ -26,7 +26,7 @@ class SVMModelTestCase(unittest.TestCase):
         X, y = make_regression(n_samples=500, n_features=5, random_state=42)
         X = pd.DataFrame(X)
         y = pd.DataFrame(y)
-        self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(X, y,test_size=0.4, random_state=42)
+        self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(X, y, test_size=0.4, random_state=42)
         self.y_train = np.ravel(self.y_train)
         self.y_test = np.ravel(self.y_test)
         # Create an instance of the SVMModel class
@@ -48,7 +48,7 @@ class SVMModelTestCase(unittest.TestCase):
         self.assertTrue(hasattr(self.predictor.model, 'support_'))
         # Assert that the model is not empty
         self.assertGreater(len(self.predictor.model.support_), 0)
-        
+
     def test_predict(self):
         """
         Test the `predict` method of the SVMModel class.
@@ -61,7 +61,7 @@ class SVMModelTestCase(unittest.TestCase):
             - The shape of the predicted values matches the shape of the original target values.
         """
         self.predictor.fit(self.X_train, self.y_train)
-        
+
         # Call the `predict` method to obtain the predicted values
         y_pred = self.predictor.predict(self.X_test)
         # Assert that the shape of the predicted values
@@ -72,7 +72,7 @@ class SVMModelTestCase(unittest.TestCase):
         self.assertIsNotNone(y_pred)
         # assert that the y_pred doens't contain any null values
         self.assertFalse(np.isnan(y_pred).any())
-    
+
     def test_score(self):
         """
         Test the `score` method of the SVMModel class.
@@ -97,7 +97,7 @@ class SVMModelTestCase(unittest.TestCase):
             "R2": metrics.r2_score(self.y_test, y_pred),
             "Durbin-Watson": durbin_watson(residuals),
         }
-        print(score,expected_score)
+        print(score, expected_score)
         # Assert that the r2 score is greater than or equal to 0
         self.assertGreaterEqual(score["R2"], 0)
         self.assertGreaterEqual(score["MAPE"], 0)

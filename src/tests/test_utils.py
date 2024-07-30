@@ -68,25 +68,25 @@ class TestUtils(unittest.TestCase):
         self.assertEqual(len(result), len(self.expected_result))
         # Assert that the result matches the expected result
         self.assertDictEqual(result, self.expected_result)
-  
+
     def test_write_to_csv(self):
         """Save the predictions to a csv file."""
         # make a temporary folder
         with tempfile.TemporaryDirectory() as tempdir:
-        # create a dummy dataframe
+            # create a dummy dataframe
             df = pd.DataFrame({"a": [1, 2, 3], "b": [4, 5, 6]})
-        # write the dataframe to a csv file
+            # write the dataframe to a csv file
             path = os.path.join(tempdir, "test.csv")
             Utils.write_to_csv(df, path)
-        # read the csv file
+            # read the csv file
             df_read = pd.read_csv(path)
-        # assert that the csv file is not empty
+            # assert that the csv file is not empty
             self.assertGreater(os.path.getsize(path), 0)
-        # assert that the csv file has the correct number of rows and columns
+            # assert that the csv file has the correct number of rows and columns
             self.assertEqual(df.shape, df_read.shape)
-        # assert that the csv file has the correct content
+            # assert that the csv file has the correct content
             self.assertEqual(df.values.tolist(), df_read.values.tolist())
-        # remove the temporary folder
+            # remove the temporary folder
             tempdir.cleanup()
 
     def test_generate_model_path(self):

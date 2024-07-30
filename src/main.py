@@ -14,10 +14,7 @@ from utils import Utils
 """Create a dictionary that maps the string keys to corresponding model
 classes. i.e LinearModel and SVM. these string should be respective of
 what model we have defined in the config.yml file."""
-PREDICTORS_LOOKUP = {
-    "linear": LinearModel,
-    "SVM": SVMModel
-}
+PREDICTORS_LOOKUP = {"linear": LinearModel, "SVM": SVMModel}
 
 """ Implement the configuration for logging in the project here. it should add a log file
 in the output/logs/abc.log
@@ -72,10 +69,12 @@ def train(utils, config, dataframe, model_type):
 
     # Initialize the data processor and run it on the data
     processor = DataProcessor(config)
-    
+
     # Create a new list 'traning_cols' which should contain  features
     # and target columns from the config.
-    training_cols = pd.concat([dataframe[config["data_params"]["features"]], dataframe[config["data_params"]["target"]]], axis=1)
+    training_cols = pd.concat(
+        [dataframe[config["data_params"]["features"]], dataframe[config["data_params"]["target"]]], axis=1
+    )
     # create the dataframe with training columns only
     dataframe = pd.DataFrame(training_cols)
 
@@ -87,9 +86,9 @@ def train(utils, config, dataframe, model_type):
     # Get the target column from the dataframe and store it as Y
     Y = dataframe[config["data_params"]["target"]]
     # Split the data into train and test sets
-    
+
     X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=config["test_size"], random_state=42)
-    
+
     # Create a predictor instance based on the model_type i.e Linear or SVM Model.
     predictor = model_type
     # Train the model using fit method
@@ -99,7 +98,7 @@ def train(utils, config, dataframe, model_type):
     logging.info(f"Model score: {score}")
     # generate a model saving path using util's class generate_model_path
     model_path = utils.generate_model_path(config, TIME_STAMP)
-    
+
     # Save the model to the model path using util's save_pkl method
     model = {"processor": processor, "predictor": predictor}
     utils.save_pkl(model, model_path)
@@ -110,7 +109,7 @@ def load_predict(utils, config, dataframe):
     # This block of code is ran when predicting using a trained model
     # Load the model from the model path you can use utils load_pkl method
     model = utils.load_pkl(config["trained_model_file"])
-    
+
     # get the trained processor and run it on the data
     processor = model["processor"]
 
@@ -128,7 +127,6 @@ def load_predict(utils, config, dataframe):
     final_df = pd.concat([X, final_df], axis=1)
     # inverse transform the predictions using data_processor's post_process function
     df = processor.post_process(final_df)
-
 
     # Save the predictions to a csv file using util's write_to_csv function
     utils.write_to_csv(df, config["predicted_result_path"])
