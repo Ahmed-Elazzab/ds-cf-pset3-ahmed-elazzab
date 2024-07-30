@@ -34,10 +34,11 @@ class LinearModelTestCase(unittest.TestCase):
         """Test the `fit` method of the LinearModel class."""
         self.predictor.fit(self.X_train, self.y_train)
         # Assert that the model is not None
-
+        self.assertIsNotNone(self.predictor.model)
         # Assert that the model is an instance of the sklearn LinearRegression class
-
+        self.assertIsInstance(self.predictor.model, LinearRegression)
         # Assert that the model is not empty
+        self.assertGreater(len(self.predictor.model.coef_), 0)
 
     def test_predict(self):
         """
@@ -53,14 +54,15 @@ class LinearModelTestCase(unittest.TestCase):
         self.predictor.fit(self.X_train, self.y_train)
 
         # Call the `predict` method to obtain the predicted values
-
+        y_pred = self.predictor.predict(self.X_test)
         # Assert that the shape of the predicted values
-
+        self.assertEqual(y_pred.shape, self.y_test.shape)
         # Assert that y_pred and y_test are similar using np.allclose
-
+        self.assertTrue(np.allclose(y_pred, self.y_test, rtol=1e-5, atol=1e-5))
         # assert that the y_pred is not None
-
+        self.assertIsNotNone(y_pred)
         # assert that the y_pred doens't contain any null values
+        self.assertFalse(np.isnan(y_pred).any())
 
     def test_score(self):
         """

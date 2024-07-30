@@ -23,6 +23,13 @@ class DataProcessor:
         self.X_scaler = None
         self.y_scaler = None
 
+    def fit(self, df):
+        # Implement the training logic here
+        # For example, calculate mean and std for normalization
+        self.means = df.mean()
+        self.stds = df.std()
+        self.trained = True
+
     def preprocess(self, data):
         """
         Execute the data processing operations.

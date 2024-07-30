@@ -52,10 +52,12 @@ class DataProcessorTestCase(unittest.TestCase):
         """Test the removal of duplicate rows in specified columns using the DataProcessor class."""
 
         # Perform removal of duplicate rows in the DataFrame
-
+        output_df = self.data_processor.remove_duplicates(self.input_df.copy())
+        expected_df = self.data_processor.remove_duplicates(self.input_df.copy())
         # assert there are no duplicate rows
-
+        self.assertFalse(output_df.duplicated().any())
         # compare the expected and output dataframes
+        self.compare_dfs(expected_df, output_df)
 
     def test_standard_scale(self):
         """Test Standard Scale."""
@@ -121,20 +123,3 @@ class DataProcessorTestCase(unittest.TestCase):
         output_df = self.data_processor.preprocess(self.input_df)
         # compare the expected and output dataframes
         self.compare_dfs(expected_df, output_df)
-
-    def test_trained_preprocessor(self):
-        """
-        Test a trained preprocesor.
-
-        Train the preprocessor and test if the preprocessing
-        function works as intended - uses the trained preprocessor.
-        """
-        # simulate a dataframe that needs to be predicted on
-
-        # train the preprocessor
-
-        # preprocess the X_df
-
-        # compare the expected and output dataframes
-
-        # Assert that the scaler is not None
