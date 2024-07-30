@@ -54,13 +54,13 @@ class PredictorABC(ABC):
         y_pred = self.predict(X_test)
 
         # Calculate MAPE (Mean Absolute Percentage Error)
-        mape = np.mean(np.abs((y_test - y_pred) / y_test)) * 100
+        mape = float(np.mean(np.abs((y_test - y_pred) / y_test)) * 100)
 
         # Calculate R2 score
-        r2 = r2_score(y_test, y_pred)
+        r2 = float(r2_score(y_test, y_pred))
 
         # Calculate Durbin-Watson score
-        dw = durbin_watson(y_test - y_pred)
+        dw = float(durbin_watson(y_test - y_pred))
 
         # Create a dictionary to store the scores
         scores = {"MAPE": mape, "R2": r2, "Durbin-Watson": dw}

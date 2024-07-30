@@ -83,10 +83,11 @@ class LinearModelTestCase(unittest.TestCase):
         y_pred = self.predictor.predict(self.X_test)
         residuals = self.y_test.values - y_pred
         expected_score = {
-            "MAPE": metrics.mean_absolute_percentage_error(self.y_test, y_pred),
-            "R2": metrics.r2_score(self.y_test, y_pred),
-            "Durbin-Watson": durbin_watson(residuals)[0],
+            "MAPE": float(metrics.mean_absolute_percentage_error(self.y_test, y_pred)),
+            "R2": float(metrics.r2_score(self.y_test, y_pred)),
+            "Durbin-Watson": float(durbin_watson(residuals)[0]),
         }
+        print(expected_score, score)
         # Assert that the r2 score is greater than or equal to 0
         self.assertGreaterEqual(score["R2"], 0)
         self.assertGreaterEqual(score["MAPE"], 0)
