@@ -1,4 +1,5 @@
 import logging
+import os
 import pickle
 
 import yaml
@@ -79,7 +80,7 @@ class Utils:
         try:
             model_dir = config["model_dir"]
             model_type = config["model_type"]
-            return f"{model_dir}/{model_type}_{time_stamp}.pk"
+            return os.path.join(model_dir, f"model_{model_type}_{time_stamp}.pkl")
         except KeyError as e:
             logger.error(f"Required keys not found in the config dictionary: {str(e)}")
             raise KeyError("Required keys not found in the config dictionary.")

@@ -1,7 +1,9 @@
 import os
 import tempfile
 import unittest
+
 import pandas as pd
+
 from utils import Utils
 
 
@@ -57,17 +59,15 @@ class TestUtils(unittest.TestCase):
             AssertionError: If any of the assertions fail.
         """
         # Define the configuration file path
-        config_file = "config.json"
-        # Create a Configuration object
-        config = Utils.get_config(config_file)
+        config_file = "config.yaml"
         # Get the configuration settings
-        result = config.get_config()
+        config = Utils.get_config(config_file)
         # Assert that the returned result is a dictionary
-        self.assertIsInstance(result, dict)
+        self.assertIsInstance(config, dict)
         # Assert that the length of the result matches the expected length
-        self.assertEqual(len(result), len(self.expected_result))
+        self.assertEqual(len(config), len(self.expected_result))
         # Assert that the result matches the expected result
-        self.assertDictEqual(result, self.expected_result)
+        self.assertDictEqual(config, self.expected_result)
 
     def test_write_to_csv(self):
         """Save the predictions to a csv file."""
@@ -86,8 +86,7 @@ class TestUtils(unittest.TestCase):
             self.assertEqual(df.shape, df_read.shape)
             # assert that the csv file has the correct content
             self.assertEqual(df.values.tolist(), df_read.values.tolist())
-            # remove the temporary folder
-            tempdir.cleanup()
+
 
     def test_generate_model_path(self):
         """Generate a model path."""
