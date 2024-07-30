@@ -58,7 +58,7 @@ class LinearModelTestCase(unittest.TestCase):
         # Assert that the shape of the predicted values
         self.assertEqual(y_pred.shape, self.y_test.shape)
         # Assert that y_pred and y_test are similar using np.allclose
-        self.assertTrue(np.allclose(y_pred, self.y_test, rtol=1e-5, atol=1e-5))
+        self.assertTrue(np.all(np.allclose(y_pred, self.y_test, rtol=1e-5, atol=1e-5)))
         # assert that the y_pred is not None
         self.assertIsNotNone(y_pred)
         # assert that the y_pred doens't contain any null values
