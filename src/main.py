@@ -59,7 +59,7 @@ def orchestrate():
     if config["train_model"]:
         train(utils, config, dataframe, predictor)
     else:
-        load_predict(utils, config, dataframe, predictor)
+        load_predict(utils, config, dataframe)
 
 
 def train(utils, config, dataframe, model_type):

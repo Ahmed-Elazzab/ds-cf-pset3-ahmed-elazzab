@@ -125,14 +125,3 @@ class DataProcessor:
         data[self.y_col] = self.y_scaler.transform(data[self.y_col])
 
         return data
-
-        #  IMPORTANT NOTE
-        """Standard Scaling technique is used in data preprocessing to transform features by
-        subtracting the mean and dividing by the standard deviation. This process standardizes
-        the range of the features, making them have zero mean and unit variance. While this is
-        true for training purpouses it's a different case for prediction purpouses. When predicting,
-        the data must be transfromed using the same scale as the data for training, otherwise
-        the we will be 'translating' data to a different 'language' (scale) and the model will
-        make mistakes. Therefore when a model is being trained, a new scaler must be fit and 
-        used to transform the data, but for predcition, the same scaler is used to only transform 
-        the data."""
