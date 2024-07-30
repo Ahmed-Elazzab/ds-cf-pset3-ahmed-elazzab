@@ -87,7 +87,6 @@ class TestUtils(unittest.TestCase):
             # assert that the csv file has the correct content
             self.assertEqual(df.values.tolist(), df_read.values.tolist())
 
-
     def test_generate_model_path(self):
         """Generate a model path."""
         # make a timestamp
