@@ -59,7 +59,7 @@ class TestUtils(unittest.TestCase):
             AssertionError: If any of the assertions fail.
         """
         # Define the configuration file path
-
+        
         # Create a Configuration object
 
         # Get the configuration settings

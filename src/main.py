@@ -88,7 +88,7 @@ def train(utils, config, dataframe, model_type):
     Y = dataframe[config["data_params"]["target"]]
     # Split the data into train and test sets
     
-    X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=test_size, random_state=42)
+    X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=config["test_size"], random_state=42)
     
     # Create a predictor instance based on the model_type i.e Linear or SVM Model.
     predictor = model_type
@@ -99,7 +99,7 @@ def train(utils, config, dataframe, model_type):
     logging.info(f"Model score: {score}")
     # generate a model saving path using util's class generate_model_path
     model_path = utils.generate_model_path(config, TIME_STAMP)
-    import pdb; pdb.set_trace()
+    
     # Save the model to the model path using util's save_pkl method
     model = {"processor": processor, "predictor": predictor}
     utils.save_pkl(model, model_path)
